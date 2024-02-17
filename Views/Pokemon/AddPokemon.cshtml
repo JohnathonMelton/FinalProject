@@ -1,0 +1,66 @@
+﻿@model Pokemon
+
+<h1>Add New Pokemon</h1>
+
+<form asp-action="Create">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name">
+    </div>
+    
+    <div>
+        <label asp-for="Type"></label>
+        <input asp-for="Type">
+    </div>
+
+    <div>
+        <label asp-for="Abilities"></label>
+        <input asp-for="Abilities">
+    </div>
+
+    <div>
+        <label asp-for="HP"></label>
+        <input asp-for="HP">
+    </div>
+
+    <div>
+        <label asp-for="Attack"></label>
+        <input asp-for="Attack">
+    </div>
+
+    <div>
+        <label asp-for="Defense"></label>
+        <input asp-for="Defense">
+    </div>
+
+    <div>
+        <label asp-for="SpecialAttack"></label>
+        <input asp-for="SpecialAttack">
+    </div>
+
+    <div>
+        <label asp-for="SpecialDefense"></label>
+        <input asp-for="SpecialDefense">
+    </div>
+
+    <div>
+        <label asp-for="Speed"></label>
+        <input asp-for="Speed">
+    </div>
+
+    <div>
+        <label asp-for="Generation"></label>
+        <input asp-for="Generation">
+    </div>
+
+    <div>
+        <label asp-for="Legendary"></label>
+        <select asp-for="Legendary">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>       
+    </div>
+
+    <button type="submit">Add Pokemon</button>
+
+</form>

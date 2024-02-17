@@ -1,0 +1,63 @@
+﻿@model Pokemon
+
+<h1>Edit Pokemon</h1>
+
+<form asp-action="Edit" asp-route-id="@Model.PokemonID" method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" value="@Model.Name">
+    </div>
+
+    <div>
+        <label asp-for="Type"></label>
+        <input asp-for="Type" value="@Model.Type">
+    </div>
+
+    <div>
+        <label asp-for="Abilities"></label>
+        <input asp-for="Abilities" value="@Model.Abilities">
+    </div>
+
+    <div>
+        <label asp-for="HP"></label>
+        <input asp-for="HP" value="@Model.HP">
+    </div>
+
+    <div>
+        <label asp-for="Attack"></label>
+        <input asp-for="Attack" value="@Model.Attack">
+    </div>
+
+    <div>
+        <label asp-for="Defense"></label>
+        <input asp-for="Defense" value="@Model.Defense">
+    </div>
+
+    <div>
+        <label asp-for="SpecialAttack"></label>
+        <input asp-for="SpecialAttack" value="@Model.SpecialAttack">
+    </div>
+
+    <div>
+        <label asp-for="SpecialDefense"></label>
+        <input asp-for="SpecialDefense" value="@Model.SpecialDefense">
+    </div>
+
+    <div>
+        <label asp-for="Speed"></label>
+        <input asp-for="Speed" value="@Model.Speed">
+    </div>
+
+    <div>
+        <label asp-for="Generation"></label>
+        <input asp-for="Generation" value="@Model.Generation">
+    </div>
+
+    <div>
+        <label asp-for="Legendary"></label>
+        <input asp-for="Legendary" value="@Model.Legendary">
+    </div>
+
+    <button type="submit">Save Changes</button>
+
+</form>
