@@ -1,19 +1,46 @@
 ﻿@model Pokemon
 
-<h1>Pokemon Details</h1>
+<h1>@Model.Name Details</h1>
 
-<div>
+<tabel class="tabel">
+    <tr>
+        <th>Pokemon ID</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Abilities</th>
+        <th>HP</th>
+        <th>Attack</th>
+        <th>Defense</th>
+        <th>Special Attack</th>
+        <th>Special Defense</th>
+        <th>Speed</th>
+        <th>Generation</th>
+        <th>Legendary</th>
+    </tr>
+    <tr>
+        <td>@Model.PokemonID</td>
+        <td>@Model.Name</td>
+        <td>@Model.Type</td>
+        <td>@Model.Abilities</td>
+        <td>@Model.HP</td>
+        <td>@Model.Attack</td>
+        <td>@Model.Defense</td>
+        <td>@Model.SpecialAttack</td>
+        <td>@Model.SpecialDefense</td>
+        <td>@Model.Speed</td>
+        <td>@Model.Generation</td>
+        <td>@Model.Legendary</td>
+    </tr>
+</tabel>
 
-    <p><strong>Name:</strong> @Model.Name</p>
-    <p><strong>Type:</strong> @Model.Type</p>
-    <p><strong>Abilities:</strong> @Model.Abilities</p>
-    <p><strong>HP:</strong> @Model.HP</p>
-    <p><strong>Attack:</strong> @Model.Attack</p>
-    <p><strong>Defense:</strong> @Model.Defense</p>
-    <p><strong>Special Attack:</strong> @Model.SpecialAttack</p>
-    <p><strong>Special Defense:</strong> @Model.SpecialDefense</p>
-    <p><strong>Speed:</strong> @Model.Speed</p>
-    <p><strong>Generation:</strong> @Model.Generation</p>
-    <p><strong>Legendary:</strong> @Model.Legendary</p>
+<div style="display: block">
+    <a href="/Pokemon/UpdatePokemon/@Model.PokemonID">Update this Pokemon</a>
+</div>
 
+<div style="display: block">
+    @using (Html.BeginForm("DeletePokemon", "Pokemon", "Post"))
+    {
+        <input type="hidden" asp-for="PokemonID" value="@Model.PokemonID" />
+        <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this Pokemon" />
+    }
 </div>

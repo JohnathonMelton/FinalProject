@@ -2,65 +2,45 @@
 
 <h1>Add New Pokemon</h1>
 
-<form asp-action="Create">
-    <div>
-        <label asp-for="Name"></label>
-        <input asp-for="Name">
-    </div>
-    
-    <div>
-        <label asp-for="Type"></label>
-        <input asp-for="Type">
-    </div>
+@using (Html.BeginForm("AddPokemonToDatabase", "Pokemon", "Post"))
+{
+    <input asp-for="PokemonID" type="hidden" value="" />
 
-    <div>
-        <label asp-for="Abilities"></label>
-        <input asp-for="Abilities">
-    </div>
+    <label asp-for="Name" class="control-label">Name</label>
+    <input type="text" name="Name" class="form-control" value="" />
 
-    <div>
-        <label asp-for="HP"></label>
-        <input asp-for="HP">
-    </div>
+    <label asp-for="Type" class="control-label">Type</label>
+    <input type="text" name="Type" class="form-control" value="" />
 
-    <div>
-        <label asp-for="Attack"></label>
-        <input asp-for="Attack">
-    </div>
+    <label asp-for="Abilities" class="control-label">Abilities</label>
+    <input type="text" name="Abilities" class="form-control" value="" />
 
-    <div>
-        <label asp-for="Defense"></label>
-        <input asp-for="Defense">
-    </div>
+    <label asp-for="HP" class="control-label">HP</label>
+    <input type="number" step="1" name="HP" class="form-control" value="" />
 
-    <div>
-        <label asp-for="SpecialAttack"></label>
-        <input asp-for="SpecialAttack">
-    </div>
+    <label asp-for="Attack" class="control-label">Attack</label>
+    <input type="number" step="1" name="Attack" class="form-control" value="" />
 
-    <div>
-        <label asp-for="SpecialDefense"></label>
-        <input asp-for="SpecialDefense">
-    </div>
+    <label asp-for="Defense" class="control-label">Defense</label>
+    <input type="number" step="1" name="Defense" class="form-control" value="" />
 
-    <div>
-        <label asp-for="Speed"></label>
-        <input asp-for="Speed">
-    </div>
+    <label asp-for="SpecialAttack" class="control-label">Special Attack</label>
+    <input type="number" step="1" name="SpecialAttack" class="form-control" value="" />
 
-    <div>
-        <label asp-for="Generation"></label>
-        <input asp-for="Generation">
-    </div>
+    <label asp-for="SpecialDefense" class="control-label">Special Defense</label>
+    <input type="number" step="1" name="SpecialDefense" class="form-control" value="" />
 
-    <div>
-        <label asp-for="Legendary"></label>
-        <select asp-for="Legendary">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-        </select>       
-    </div>
+    <label asp-for="Speed" class="control-label">Speed</label>
+    <input type="number" step="1" name="Speed" class="form-control" value="" />
 
-    <button type="submit">Add Pokemon</button>
+    <label asp-for="Generation" class="control-label">Generation</label>
+    <input type="number" step="1" name="Generation" class="form-control" value="" />
 
-</form>
+    <label asp-for="Legendary" class="control-label">Legendary</label>
+    <select name="Legendary" class="form-control">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+
+
+}

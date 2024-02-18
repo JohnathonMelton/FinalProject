@@ -3,7 +3,6 @@ using System.Data;
 using System.Collections.Generic;
 using FinalProject.Models;
 using Dapper;
-using System.Net.Http.Headers;
 
 namespace FinalProject
 {
@@ -18,20 +17,10 @@ namespace FinalProject
 
         public Pokemon AssignCategory()
         {
-            var pokemonID = GetAllPokemon();
+            var pokedex = GetAllPokemon();
             var pokemon = new Pokemon();
-            pokemon.Pokemons = pokemonID;
+            pokemon.Pokemons = pokedex;
             return pokemon;
-        }
-        public void AddPokemon(Pokemon pokemonToAdd)
-        {
-            _connection.Execute("INSERT INTO pokemon (NAME, TYPE, POKEMONID) VALUES (@name, @type, @pokemonid);",
-                new { name = pokemonToAdd.Name, type = pokemonToAdd.Type, pokemonid = pokemonToAdd.PokemonID });
-        }
-
-        public void DeletePokemon(Pokemon pokemon)
-        {
-            _connection.Execute("DELETE FROM POKEMON WHERE PokemonID = @id;", new {id = pokemon.PokemonID });
         }
 
         public IEnumerable<Pokemon> GetAllPokemon()
@@ -41,18 +30,25 @@ namespace FinalProject
 
         public Pokemon GetPokemon(int id)
         {
-            return _connection.QuerySingle<Pokemon>("SELECT * FROM POKEMON WHERE POKEMONID = @id", new {id = id});
+            return _connection.QuerySingle<Pokemon>("SELECT * FROM POKEMON WHERE POKEMONID = @id", new { id = id });
+        }
+
+        public void AddPokemon(Pokemon pokemonToAdd)
+        {
+            _connection.Execute("INSERT INTO pokemon (NAME, TYPE, ABILITIES, HP, ATTACK, DEFENSE, SPECIALATTACK, SPECIALDEFENSE, SPEED, GENERATION, LEGENDARY) VALUES (@name, @type, @abilities, @hp, @attack, @defense, @specialattack, @specialdefense, @speed, @generation, @legendary);",
+                new { name = pokemonToAdd.Name, type = pokemonToAdd.Type, abilities = pokemonToAdd.Abilities, hp = pokemonToAdd.HP, attack = pokemonToAdd.Attack, defense = pokemonToAdd.Defense, specialAttack = pokemonToAdd.SpecialAttack, specialDefense = pokemonToAdd.SpecialDefense, speed = pokemonToAdd.Speed, generation = pokemonToAdd.Generation, legendary = pokemonToAdd.Legendary });
+
         }
 
         public void UpdatePokemon(Pokemon pokemon)
         {
-            _connection.Execute("UPDATE pokemon SET Name = @name, Type = @type WHERE pokemonid = @id",
-                new { name = pokemon.Name, type = pokemon.Type, id = pokemon.PokemonID });
+            _connection.Execute("UPDATE pokemon SET Name = @name, Type = @type WHERE PokemonID = @id",
+               new { name = pokemon.Name, type = pokemon.Type, id = pokemon.PokemonID });
         }
 
-        public IEnumerable<Pokemon> GetPokemon()
+        public void DeletePokemon(Pokemon pokemon)
         {
-            return _connection.Query<Pokemon>("SELECT * FROM pokemons;");
+            _connection.Execute("DELETE FROM Pokemon WHERE PokemonID = @id;", new {id = pokemon.PokemonID});
         }
     }
 }

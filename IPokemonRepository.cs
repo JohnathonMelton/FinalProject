@@ -10,8 +10,6 @@ namespace FinalProject
         public Pokemon GetPokemon(int id);
         public void UpdatePokemon(Pokemon pokemon);
         public void AddPokemon(Pokemon pokemonToAdd);
-        public IEnumerable<Pokemon>GetPokemon();
-
         public Pokemon AssignCategory();
         public void DeletePokemon(Pokemon pokemon);
     }

@@ -9,28 +9,29 @@ namespace FinalProject.Controllers
 {
     public class PokemonController : Controller
     {
-        private readonly IPokemonRepository pokeRepo;
+        private readonly IPokemonRepository repo;
 
-        public PokemonController(IPokemonRepository pokemonRepository)
+        public PokemonController(IPokemonRepository repo)
         {
-            this.pokeRepo = pokemonRepository;
+            this.repo = repo;
         }
 
         public IActionResult Index()
         {
-            var pokemon = pokeRepo.GetAllPokemon();
+            var pokemon = repo.GetAllPokemon();
+
             return View(pokemon);
         }
 
         public IActionResult Details(int id)
         {
-            var pokemon = pokeRepo.GetPokemon(id);
+            var pokemon = repo.GetPokemon(id);
             return View(pokemon);
         }
 
         public IActionResult UpdatePokemon(int id)
         {
-            Pokemon pokemon = pokeRepo.GetPokemon(id);
+            Pokemon pokemon = repo.GetPokemon(id);
             if (pokemon == null)
             {
                 return View("PokemonNotFound");
@@ -40,26 +41,26 @@ namespace FinalProject.Controllers
 
         public IActionResult UpdatePokemonToDatabase(Pokemon pokemon)
         {
-            pokeRepo.UpdatePokemon(pokemon);
+            repo.UpdatePokemon(pokemon);
 
             return RedirectToAction("ViewPokemon", new { id = pokemon.PokemonID });
         }
 
         public IActionResult AddPokemon()
         {
-            var pokemon = pokeRepo.AssignCategory();
+            var pokemon = repo.AssignCategory();
             return View(pokemon);
         }
 
         public IActionResult AddPokemonToDatabase(Pokemon pokemonToAdd)
         {
-            pokeRepo.AddPokemon(pokemonToAdd);
+            repo.AddPokemon(pokemonToAdd);
             return RedirectToAction("Index");
         }
 
         public ActionResult DeletePokemon(Pokemon pokemon)
         {
-            pokeRepo.DeletePokemon(pokemon);
+            repo.DeletePokemon(pokemon);
             return RedirectToAction("Index");
         }
 

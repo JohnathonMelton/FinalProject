@@ -3,11 +3,11 @@
     <h1>All Pokemon</h1>
 
     <div style="display: block">
-        <a href="/Pokemon/Details/">View all Pokemon</a>
+        <a href="/Pokemon/AddPokemon/">Add New Pokemon</a>
     </div>
 
 
-    <table>
+    <table class="table">
         <tr>
             <th>Name</th>
             <th>Type</th>
@@ -22,7 +22,7 @@
             <th>Legendary</th>
         </tr>
 
-    @foreach (var pokemon in Model)
+    @foreach (var pokemon in @Model)
     {
         <tr>
             <td><a href=/Pokemon/Details/@pokemon.PokemonID>@pokemon.PokemonID</a></td>
