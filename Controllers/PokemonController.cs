@@ -16,6 +16,7 @@ namespace FinalProject.Controllers
             this.repo = repo;
         }
 
+        //Action method to display all pokemon
         public IActionResult Index()
         {
             var pokemon = repo.GetAllPokemon();
@@ -23,6 +24,7 @@ namespace FinalProject.Controllers
             return View(pokemon);
         }
 
+        // Action method to display details of a specific Pokemon based on its ID
         public IActionResult Details(int id)
         {
             var pokemon = repo.GetPokemon(id);
@@ -39,17 +41,20 @@ namespace FinalProject.Controllers
             return View(pokemon);
         }
 
+        // Action method to handle the update of a Pokemon's information in the database
+        [HttpPost]
         public IActionResult UpdatePokemonToDatabase(Pokemon pokemon)
         {
-            repo.UpdatePokemon(pokemon);
+            repo.UpdatePokemon(pokemon); // Updating the Pokemon's information in the repository
 
-            return RedirectToAction("ViewPokemon", new { id = pokemon.PokemonID });
+            return RedirectToAction("Index"); // Redirecting to the Index action after updating
         }
 
         public IActionResult AddPokemon()
         {
-            var pokemon = repo.AssignCategory();
-            return View(pokemon);
+            var pokemon = repo.AssignCategory(); // Retrieving data necessary for assigning a category to the new Pokemon
+
+            return View(pokemon); // Passing the retrieved data to the corresponding view for adding a new Pokemon
         }
 
         public IActionResult AddPokemonToDatabase(Pokemon pokemonToAdd)

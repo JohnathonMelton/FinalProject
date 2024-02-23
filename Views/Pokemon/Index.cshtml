@@ -1,43 +1,111 @@
 ﻿@model IEnumerable<Pokemon>
 
-    <h1>All Pokemon</h1>
+    <!DOCTYPE html>
+    <html lang="en-us">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewpoint" content="width=device-width, initial-scale=1.0" />
+            <title>All Pokemon</title>
+            <style>
+                body {
+                    background-color: #222;
+                    color: #eee;
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                }
 
-    <div style="display: block">
-        <a href="/Pokemon/AddPokemon/">Add New Pokemon</a>
-    </div>
+                .container {
+                    width: 80%;
+                    margin: 20px auto;
+                    padding: 20px;
+                    background-color: #333;
+                    border-radius: 10px;
+                }
 
+                h1 {
+                    text-align: center;
+                }
 
-    <table class="table">
-        <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Abilities</th>
-            <th>HP</th>
-            <th>Attack</th>
-            <th>Defense</th>
-            <th>Special Attack</th>
-            <th>Special Defense</th>
-            <th>Speed</th>
-            <th>Generation</th>
-            <th>Legendary</th>
-        </tr>
+                .add-link {
+                    text-align: right;
+                    margin-bottom: 20px;
+                }
 
-    @foreach (var pokemon in @Model)
-    {
-        <tr>
-            <td><a href=/Pokemon/Details/@pokemon.PokemonID>@pokemon.PokemonID</a></td>
-            <td>@pokemon.Name</td>
-            <td>@pokemon.Type</td>
-            <td>@pokemon.Abilities</td>
-            <td>@pokemon.HP</td>
-            <td>@pokemon.Attack</td>
-            <td>@pokemon.Defense</td>
-            <td>@pokemon.SpecialAttack</td>
-            <td>@pokemon.SpecialDefense</td>
-            <td>@pokemon.Speed</td>
-            <td>@pokemon.Generation</td>
-            <td>@pokemon.Legendary</td>
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }
 
-        </tr>
-    }
-</table>
+                th, td {
+                    padding: 10px;
+                    border-bottom: 1px solid #444;
+                    text-align: left;
+                }
+
+                th {
+                    background-color #444;
+                }
+
+                tr:nth-child(even) {
+                    background-color: #555;
+                }
+
+                a {
+                    color: #ffc107;
+                    text-decoration: none;
+                }
+
+                a:hover {
+                    text-decoration: underline;
+                }
+            </style>
+
+        </head>
+        <body>
+            <div class="container">
+                <h1>All Pokemon</h1>
+                <div class="add-link">
+                    <a href="/Pokemon/AddPokemon">Add New Pokemon</a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pokedex ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Abilities</th>
+                            <th>HP</th>
+                            <th>Attack</th>
+                            <th>Defense</th>
+                            <th>Special Attack</th>
+                            <th>Special Defense</th>
+                            <th>Speed</th>
+                            <th>Generation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                <!-- Loop through each Pokemon in the model and display its details in a row -->
+                         @foreach (var pokemon in @Model)
+                         {
+                             <tr>
+                                    <td><a href="/Pokemon/Details/@pokemon.PokemonID">@pokemon.PokemonID</a></td>
+                                    <td>@pokemon.Name</td>
+                                    <td>@pokemon.Type</td>
+                                    <td>@pokemon.Abilities</td>
+                                    <td>@pokemon.HP</td>
+                                    <td>@pokemon.Attack</td>
+                                    <td>@pokemon.Defense</td>
+                                    <td>@pokemon.SpecialAttack</td>
+                                    <td>@pokemon.SpecialDefense</td>
+                                    <td>@pokemon.Speed</td>
+                                    <td>@pokemon.Generation</td>
+                             </tr>
+                         }
+                    </tbody>
+                </table>
+            </div>
+        </body>
+    </html>

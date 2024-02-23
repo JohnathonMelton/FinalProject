@@ -1,46 +1,100 @@
 ﻿@model Pokemon
 
-<h1>@Model.Name Details</h1>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@Model.Name Details</title>
+    <style>
+        body {
+            background-color: #1e1e1e; 
+            background-image: repeating-linear-gradient(45deg, #383838, #383838 10px, #1e1e1e 10px, #1e1e1e 20px); 
+            color: #ffffff; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
 
-<tabel class="tabel">
-    <tr>
-        <th>Pokemon ID</th>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Abilities</th>
-        <th>HP</th>
-        <th>Attack</th>
-        <th>Defense</th>
-        <th>Special Attack</th>
-        <th>Special Defense</th>
-        <th>Speed</th>
-        <th>Generation</th>
-        <th>Legendary</th>
-    </tr>
-    <tr>
-        <td>@Model.PokemonID</td>
-        <td>@Model.Name</td>
-        <td>@Model.Type</td>
-        <td>@Model.Abilities</td>
-        <td>@Model.HP</td>
-        <td>@Model.Attack</td>
-        <td>@Model.Defense</td>
-        <td>@Model.SpecialAttack</td>
-        <td>@Model.SpecialDefense</td>
-        <td>@Model.Speed</td>
-        <td>@Model.Generation</td>
-        <td>@Model.Legendary</td>
-    </tr>
-</tabel>
+        .pokemon-details-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            width: 100%;
+        }
 
-<div style="display: block">
-    <a href="/Pokemon/UpdatePokemon/@Model.PokemonID">Update this Pokemon</a>
-</div>
+        .pokemon-image {
+            flex: 1;
+            text-align: center;
+        }
 
-<div style="display: block">
-    @using (Html.BeginForm("DeletePokemon", "Pokemon", "Post"))
-    {
-        <input type="hidden" asp-for="PokemonID" value="@Model.PokemonID" />
-        <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this Pokemon" />
-    }
-</div>
+        .pokemon-details {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .pokemon-stats {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .update-delete-links {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+            .update-delete-links a {
+                color: #ffffff;
+                text-decoration: none;
+                margin-right: 20px;
+            }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
+        
+    </head>
+
+    <body>
+        <div class="pokemon-details-container">
+            <div class="pokemon-image">
+                <img src="@Model.ImageURL" alt="@Model.Name" />
+            </div>
+
+            <div class="pokemon-details">
+                <h1>@Model.Name Details</h1>
+                <ul class="pokemon-stats">
+                    <li><strong>Pokemon ID:</strong> @Model.PokemonID</li>
+                    <li><strong>Name:</strong>@Model.Name</li>
+                    <li><strong>Type:</strong>@Model.Type</li>
+                    <li><strong>Abilities:</strong>@Model.Abilities</li>
+                    <li><strong>HP:</strong>@Model.HP</li>
+                    <li><strong>Attack:</strong>@Model.Attack</li>
+                    <li><strong>Defense:</strong>@Model.Defense</li>
+                    <li><strong>Special Attack:</strong>@Model.SpecialAttack</li>
+                    <li><strong>Special Defense:</strong>@Model.SpecialDefense</li>
+                    <li><strong>Speed:</strong>@Model.Speed</li>
+                    <li><strong>Generation:</strong>@Model.Generation</li>
+                </ul>
+                <div class="update-delete-links">
+                    <a href="/Pokemon/UpdatePokemon/@Model.PokemonID">Update this Pokemon</a>
+                @using (Html.BeginForm("DeletePokemon", "Pokemon", "Post"))
+                {
+                    <input type="hidden" name="PokemonID" value="@Model.PokemonID" />
+                    <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this Pokemon" />
+                }
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

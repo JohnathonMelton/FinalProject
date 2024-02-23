@@ -1,46 +1,116 @@
 ﻿@model Pokemon
 
+<style>
+    /* Custom Styles for the Page */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 5px;
+    }
+
+    select {
+        height: 38px;
+    }
+
+    .submit-button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .submit-button:hover {
+        background-color: #0056b3;
+    }
+
+</style>
+
 <h1>Add New Pokemon</h1>
 
 @using (Html.BeginForm("AddPokemonToDatabase", "Pokemon", "Post"))
 {
-    <input asp-for="PokemonID" type="hidden" value="" />
+    <!-- Begin a form to submit data to the "AddPokemonToDatabase" action in the "Pokemon" controller using HTTP POST -->
 
-    <label asp-for="Name" class="control-label">Name</label>
-    <input type="text" name="Name" class="form-control" value="" />
+    <!-- Input fields for entering each property of the Pokemon Model. -->
+    <div class="form-group">
+        <label for="PokemonID">Pokedex Number</label>
+        <input type="number" step="1" name="PokemonID" class="form-control" />
+    </div>
 
-    <label asp-for="Type" class="control-label">Type</label>
-    <input type="text" name="Type" class="form-control" value="" />
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" name="Name" class="form-control" />
+    </div>
 
-    <label asp-for="Abilities" class="control-label">Abilities</label>
-    <input type="text" name="Abilities" class="form-control" value="" />
+    <div class="form-group">
+        <label for="Type">Type</label>
+        <input type="text" name="Type" class="form-control" />
+    </div>
 
-    <label asp-for="HP" class="control-label">HP</label>
-    <input type="number" step="1" name="HP" class="form-control" value="" />
+    <div class="form-group">
+        <label for="Abilities">Abilities</label>
+        <input type="text" name="Abilities" class="form-control" />
+    </div>
 
-    <label asp-for="Attack" class="control-label">Attack</label>
-    <input type="number" step="1" name="Attack" class="form-control" value="" />
+    <div class="form-group">
+        <label for="HP">HP</label>
+        <input type="number" step="1" name="HP" class="form-control" />
+    </div>
 
-    <label asp-for="Defense" class="control-label">Defense</label>
-    <input type="number" step="1" name="Defense" class="form-control" value="" />
+    <div class="form-group">
+        <label for="Attack">Attack</label>
+        <input type="number" step="1" name="Attack" class="form-control" />
+    </div>
 
-    <label asp-for="SpecialAttack" class="control-label">Special Attack</label>
-    <input type="number" step="1" name="SpecialAttack" class="form-control" value="" />
+    <div class="form-group">
+        <label for="Defense">Defense</label>
+        <input type="number" step="1" name="Defense" class="form-control" />
+    </div>
 
-    <label asp-for="SpecialDefense" class="control-label">Special Defense</label>
-    <input type="number" step="1" name="SpecialDefense" class="form-control" value="" />
+    <div class="form-group">
+        <label for="SpecialAttack">Special Attack</label>
+        <input type="number" step="1" name="SpecialAttack" class="form-control" />
+    </div>
 
-    <label asp-for="Speed" class="control-label">Speed</label>
-    <input type="number" step="1" name="Speed" class="form-control" value="" />
+    <div class="form-group">
+        <label for="SpecialDefense">Special Defense</label>
+        <input type="number" step="1" name="SpecialDefense" class="form-control" />
+    </div>
 
-    <label asp-for="Generation" class="control-label">Generation</label>
-    <input type="number" step="1" name="Generation" class="form-control" value="" />
+    <div class="form-group">
+        <label for="Speed">Speed</label>
+        <input type="number" step="1" name="Speed" class="form-control" />
+    </div>
 
-    <label asp-for="Legendary" class="control-label">Legendary</label>
-    <select name="Legendary" class="form-control">
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-    </select>
+    <div class="form-group">
+        <label for="Generation">Generation</label>
+        <input type="number" step="1" name="Generation" class="form-control" />
+    </div>
 
+    <div class="form-group">
+        <label for="ImageUrl">Image URL</label>
+        <input type="text" name="ImageUrl" class="form-control" />
+    </div>
 
+    <button type="submit" class="submit-button">Add Pokemon</button>
 }

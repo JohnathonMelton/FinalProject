@@ -36,11 +36,8 @@
     <label asp-for="Generation" class="control-label">Generation</label>
     <input type="number" step="1" name="Generation" class="form-control" value="@Model.Generation" />
 
-    <label asp-for="Legendary" class="control-label">Legendary</label>
-    <select name="Legendary" class="form-control">
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-    </select>
+    <label asp-for="ImageURL" class="control-label">Image URL</label>
+    <input type="text" name="ImageURL" class="form-control" value="@Model.ImageURL" />
 
     <input type="submit" value="Update Pokemon" class="btn btn-primary" />
 }

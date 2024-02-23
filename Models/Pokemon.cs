@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace FinalProject
 {
     public class Pokemon
     {
-        public Pokemon()
-        {
-
-        }
+       
 
         public int PokemonID { get; set; }
         public string Name { get; set; }
@@ -21,7 +19,8 @@ namespace FinalProject
         public int SpecialDefense { get; set; }
         public int Speed { get; set; }
         public int Generation { get; set; }
-        public bool Legendary { get; set; }
+        public string ImageURL { get; set; }
+
 
         public IEnumerable<Pokemon> Pokemons { get; set; }
         

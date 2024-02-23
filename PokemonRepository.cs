@@ -3,6 +3,10 @@ using System.Data;
 using System.Collections.Generic;
 using FinalProject.Models;
 using Dapper;
+using Org.BouncyCastle.Asn1.Esf;
+using System.Data.Common;
+using System.Diagnostics.Eventing.Reader;
+using Microsoft.Extensions.Logging;
 
 namespace FinalProject
 {
@@ -30,20 +34,20 @@ namespace FinalProject
 
         public Pokemon GetPokemon(int id)
         {
-            return _connection.QuerySingle<Pokemon>("SELECT * FROM POKEMON WHERE POKEMONID = @id", new { id = id });
+            return _connection.QueryFirstOrDefault<Pokemon>("SELECT * FROM POKEMON WHERE POKEMONID = @id", new { id = id });
         }
 
         public void AddPokemon(Pokemon pokemonToAdd)
         {
-            _connection.Execute("INSERT INTO pokemon (NAME, TYPE, ABILITIES, HP, ATTACK, DEFENSE, SPECIALATTACK, SPECIALDEFENSE, SPEED, GENERATION, LEGENDARY) VALUES (@name, @type, @abilities, @hp, @attack, @defense, @specialattack, @specialdefense, @speed, @generation, @legendary);",
-                new { name = pokemonToAdd.Name, type = pokemonToAdd.Type, abilities = pokemonToAdd.Abilities, hp = pokemonToAdd.HP, attack = pokemonToAdd.Attack, defense = pokemonToAdd.Defense, specialAttack = pokemonToAdd.SpecialAttack, specialDefense = pokemonToAdd.SpecialDefense, speed = pokemonToAdd.Speed, generation = pokemonToAdd.Generation, legendary = pokemonToAdd.Legendary });
+            _connection.Execute("INSERT INTO pokemon (POKEMONID, NAME, TYPE, ABILITIES, HP, ATTACK, DEFENSE, SPECIALATTACK, SPECIALDEFENSE, SPEED, GENERATION, IMAGEURL) VALUES (@pokemonid, @name, @type, @abilities, @hp, @attack, @defense, @specialattack, @specialdefense, @speed, @generation, @imageurl);",
+                new { pokemonid = pokemonToAdd.PokemonID, name = pokemonToAdd.Name, type = pokemonToAdd.Type, abilities = pokemonToAdd.Abilities, hp = pokemonToAdd.HP, attack = pokemonToAdd.Attack, defense = pokemonToAdd.Defense, specialAttack = pokemonToAdd.SpecialAttack, specialDefense = pokemonToAdd.SpecialDefense, speed = pokemonToAdd.Speed, generation = pokemonToAdd.Generation, imageURL = pokemonToAdd.ImageURL });
 
         }
 
-        public void UpdatePokemon(Pokemon pokemon)
+        public void UpdatePokemon(Pokemon updatedPokemon)
         {
-            _connection.Execute("UPDATE pokemon SET Name = @name, Type = @type WHERE PokemonID = @id",
-               new { name = pokemon.Name, type = pokemon.Type, id = pokemon.PokemonID });
+            string sql = @"UPDATE POKEMON SET Name = @Name, Type = @Type, Abilities = @Abilities, HP = @Hp, Attack = @Attack, Defense = @Defense, SpecialAttack = @SpecialAttack, SpecialDefense = @SpecialDefense, Speed = @Speed, Generation = @Generation, ImageURL = @ImageURL WHERE PokemonID = @PokemonID";
+            _connection.Execute(sql, updatedPokemon);
         }
 
         public void DeletePokemon(Pokemon pokemon)
