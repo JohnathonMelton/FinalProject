@@ -6,71 +6,187 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@Model.Name Details</title>
-    <style>
+        <style>
+        /* Common styles for the card */
         body {
-            background-color: #1e1e1e; 
-            background-image: repeating-linear-gradient(45deg, #383838, #383838 10px, #1e1e1e 10px, #1e1e1e 20px); 
-            color: #ffffff; 
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        
-
-        .pokemon-details-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            max-width: 800px;
-            width: 100%;
+            background-color: gray;
+            font-family: sans-serif;
         }
 
-        .pokemon-image {
-            flex: 1;
+        .pokemon-card {
+            width: 310px;
+            padding: 10px;
+            border: 10px solid gold;
+            border-radius: 20px;
+            background: linear-gradient(to bottom right, #d9e4ec, #adc1d1, #7d99af, #557792, #7d99af, #adc1d1); /* Default background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             text-align: center;
+            margin: auto;
+        }
+
+        .pokemon-image img {
+            width: 100%;
+            height: auto;
+            border: 5px yellow outset;
+            box-shadow: 3px 3px 10px #000;
         }
 
         .pokemon-details {
-            flex: 1;
             padding: 20px;
         }
 
         .pokemon-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             list-style-type: none;
             padding: 0;
+            margin: 0;
+            gap: 5px;
         }
+
+            .pokemon-stats li {
+                margin: 2px 0;
+                font-size: 12px;
+            }
 
         .update-delete-links {
-            text-align: left;
+            display: flex;
+            justify-content: center;
             margin-top: 20px;
+            gap: 20px;
         }
 
-            .update-delete-links a {
+            .update-delete-links a,
+            .update-delete-links input[type="submit"] {
                 color: #ffffff;
                 text-decoration: none;
-                margin-right: 20px;
+                background: #007bff;
+                padding: 5px 10px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .update-delete-links input[type="submit"] {
+                background: #dc3545;
+                border: none;
             }
 
         h1 {
-            text-align: center;
-            font-size: 36px;
+            font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
         }
-    </style>
+
+        /* Optional additional styles */
+        p.italicize {
+            font-style: italic;
+            font-weight: bold;
+            font-size: 11px;
+            border: 3px solid gold;
+            border-radius: 6px;
+            margin: 0px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        span.label {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        td.basic {
+            font-weight: bold;
+            font-size: 11px;
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+        }
+
+        td.nameofanimal {
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        td.hp {
+            color: crimson;
+            font-size: 20px;
+            text-align: right;
+            font-weight: bold;
+            width: 20%;
+        }
+
+        td.typesign {
+            font-size: 20px;
+            text-align: center;
+            width: 5%;
+        }
+
+        p.description {
+            padding: 2px 0px 0px 0px;
+            margin: 0px 0px 5px 0px;
+            background: linear-gradient(to right, goldenrod, yellow, goldenrod);
+            font-size: 11px;
+            font-family: sans-serif;
+            font-style: italic;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        span.labeltext {
+            font-size: 11px;
+        }
+
+        td.energy {
+            width: 18%;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        td.damage {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        table.costs {
+            font-size: 11px;
+            text-align: center;
+            width: 100%;
+        }
+
+        tr.costheaders {
+            font-weight: bold;
+        }
+
+        tr.costicons {
+            font-size: 20px;
+        }
+
+        table.nameheaders {
+            width: 100%;
+        }
+
+        table.stats {
+            width: 100%;
+            text-align: center;
+        }
+
+        p.bottomtext {
+            font-size: 7px;
+            text-align: center;
+        }
+
+        </style>
         
     </head>
 
-    <body>
-        <div class="pokemon-details-container">
+<body>
+    <div class="pokemon-details-container">
+        <div class="pokemon-card">
             <div class="pokemon-image">
                 <img src="@Model.ImageURL" alt="@Model.Name" />
             </div>
-
             <div class="pokemon-details">
                 <h1>@Model.Name Details</h1>
                 <ul class="pokemon-stats">
@@ -86,15 +202,17 @@
                     <li><strong>Speed:</strong>@Model.Speed</li>
                     <li><strong>Generation:</strong>@Model.Generation</li>
                 </ul>
-                <div class="update-delete-links">
-                    <a href="/Pokemon/UpdatePokemon/@Model.PokemonID">Update this Pokemon</a>
-                @using (Html.BeginForm("DeletePokemon", "Pokemon", "Post"))
-                {
-                    <input type="hidden" name="PokemonID" value="@Model.PokemonID" />
-                    <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this Pokemon" />
-                }
-                </div>
             </div>
         </div>
-    </body>
+        <div class="update-delete-links">
+            <a href="/Pokemon/UpdatePokemon/@Model.PokemonID">Update this Pokemon</a>
+            @using (Html.BeginForm("DeletePokemon", "Pokemon", "Post"))
+            {
+                <input type="hidden" name="PokemonID" value="@Model.PokemonID" />
+                <input type="submit" onclick="return confirm('Are you sure?')" value="Delete this Pokemon" />
+            }
+        </div>
+    </div>
+</body>
+
 </html>

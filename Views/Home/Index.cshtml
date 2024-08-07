@@ -4,48 +4,56 @@
 
 <style>
     body {
-        background-image: url('https://static.vecteezy.com/system/resources/thumbnails/024/625/582/small/cute-yellow-mouse-character-background-free-vector.jpg');
-        background-size: 100%;
-        background-position: center;
+        background-image: url('https://images4.alphacoders.com/119/119094.jpg');
+        background-size: cover;
+        opacity: 0.9;
+        background-position: 50% 50%; 
+        background-repeat: no-repeat;
         font-family: Arial, sans-serif;
-        color: orangered;
+        color: whitesmoke;
         margin: 0;
         padding: 0;
+        height: 100vh;
+        position: relative;
     }
 
     .container {
         text-align: center;
-        padding-top: 100px; /*Adjust this value for spacing */
+        padding-top: 10px; /*Adjust this value for spacing */
     }
 
     .container h1 {
-        font-size: 3rem;
+        font-size: 5rem;
         margin-bottom: 20px;
     }
-
-    .container p {
-        font-size: 1.2rem;
-        margin-bottom: 20px;
+    .footer {
+        position: absolute;
+        bottom: 15%; /*Adjust this value to move the button higher or lower*/
+        width: 100%;
+        text-align: left;
+        padding-bottom: 20px;
     }
 
-    .container a {
-        color:orangered;
+    .footer a {
+        color:black;
         text-decoration: none;
         font-weight: bold;
         padding: 10px 20px;
-        background-color:#4CAF50;
+        background-color: midnightblue;
         border-radius: 5px;
-        transition: bacground-color 0.3s;
+        transition: background-color 0.3s;
     }
 
-    .container a:hover {
-        background-color: #45a049;
+    .footer a:hover {
+        background-color: royalblue;
     }
 </style>
 
 <div class="container">
     <h1>Welcome!</h1>
-    <a asp-controller="Pokemon" asp-action="Index">Go to Pokemon Database</a>
+</div>
+<div class="footer">
+    <a asp-controller="Pokemon" asp-action="Index">Head to the Database</a>
 </div>
 
 
